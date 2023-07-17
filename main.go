@@ -21,13 +21,15 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "<h2>This is contact page</h2>")
 }
 func pathhandler(w http.ResponseWriter, r *http.Request) {
+
 	switch r.URL.Path {
 	case "/":
 		homeHandler(w, r)
 	case "/contact":
 		contactHandler(w, r)
 	default:
-		//
+		http.Error(w, "page not found", http.StatusNotFound)
+		// w.WriteHeader(http.StatusNotFound)
+		// fmt.Fprintf(w, "page not found")
 	}
-
 }
